@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bhz.mail.mapper.MailSend1Mapper">
+  <resultMap id="BaseResultMap" type="com.bhz.mail.entity.MailSend">
+    <id column="SEND_ID" jdbcType="VARCHAR" property="sendId" />
+    <result column="SEND_TO" jdbcType="VARCHAR" property="sendTo" />
+    <result column="SEND_MAIL" jdbcType="VARCHAR" property="sendMail" />
+    <result column="SEND_CONTENT" jdbcType="VARCHAR" property="sendContent" />
+    <result column="SEND_PRIORITY" jdbcType="DECIMAL" property="sendPriority" />
+    <result column="SEND_COUNT" jdbcType="DECIMAL" property="sendCount" />
+    <result column="SEND_STATUS" jdbcType="VARCHAR" property="sendStatus" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="VERSION" jdbcType="DECIMAL" property="version" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SEND_ID, SEND_TO, SEND_MAIL, SEND_CONTENT, SEND_PRIORITY, SEND_COUNT, SEND_STATUS, 
+    REMARK, VERSION, UPDATE_BY, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mail_send1
+    where SEND_ID = #{sendId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from mail_send1
+    where SEND_ID = #{sendId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bhz.mail.entity.MailSend">
+    insert into mail_send1 (SEND_ID, SEND_TO, SEND_MAIL, 
+      SEND_CONTENT, SEND_PRIORITY, SEND_COUNT, 
+      SEND_STATUS, REMARK, VERSION, 
+      UPDATE_BY, UPDATE_TIME)
+    values (#{sendId,jdbcType=VARCHAR}, #{sendTo,jdbcType=VARCHAR}, #{sendMail,jdbcType=VARCHAR}, 
+      #{sendContent,jdbcType=VARCHAR}, #{sendPriority,jdbcType=DECIMAL}, #{sendCount,jdbcType=DECIMAL}, 
+      #{sendStatus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{version,jdbcType=DECIMAL}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bhz.mail.entity.MailSend">
+    insert into mail_send1
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sendId != null">
+        SEND_ID,
+      </if>
+      <if test="sendTo != null">
+        SEND_TO,
+      </if>
+      <if test="sendMail != null">
+        SEND_MAIL,
+      </if>
+      <if test="sendContent != null">
+        SEND_CONTENT,
+      </if>
+      <if test="sendPriority != null">
+        SEND_PRIORITY,
+      </if>
+      <if test="sendCount != null">
+        SEND_COUNT,
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sendId != null">
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTo != null">
+        #{sendTo,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMail != null">
+        #{sendMail,jdbcType=VARCHAR},
+      </if>
+      <if test="sendContent != null">
+        #{sendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPriority != null">
+        #{sendPriority,jdbcType=DECIMAL},
+      </if>
+      <if test="sendCount != null">
+        #{sendCount,jdbcType=DECIMAL},
+      </if>
+      <if test="sendStatus != null">
+        #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bhz.mail.entity.MailSend">
+    update mail_send1
+    <set>
+      <if test="sendTo != null">
+        SEND_TO = #{sendTo,jdbcType=VARCHAR},
+      </if>
+      <if test="sendMail != null">
+        SEND_MAIL = #{sendMail,jdbcType=VARCHAR},
+      </if>
+      <if test="sendContent != null">
+        SEND_CONTENT = #{sendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPriority != null">
+        SEND_PRIORITY = #{sendPriority,jdbcType=DECIMAL},
+      </if>
+      <if test="sendCount != null">
+        SEND_COUNT = #{sendCount,jdbcType=DECIMAL},
+      </if>
+      <if test="sendStatus != null">
+        SEND_STATUS = #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=DECIMAL},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SEND_ID = #{sendId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bhz.mail.entity.MailSend">
+    update mail_send1
+    set SEND_TO = #{sendTo,jdbcType=VARCHAR},
+      SEND_MAIL = #{sendMail,jdbcType=VARCHAR},
+      SEND_CONTENT = #{sendContent,jdbcType=VARCHAR},
+      SEND_PRIORITY = #{sendPriority,jdbcType=DECIMAL},
+      SEND_COUNT = #{sendCount,jdbcType=DECIMAL},
+      SEND_STATUS = #{sendStatus,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=DECIMAL},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where SEND_ID = #{sendId,jdbcType=VARCHAR}
+  </update>
+</mapper>
