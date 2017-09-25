@@ -28,7 +28,7 @@
     delete from mail_send2
     where SEND_ID = #{sendId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="2">
+  <insert id="insert" parameterType="com.bhz.mail.entity.MailSend">
     insert into mail_send2 (SEND_ID, SEND_TO, SEND_MAIL, 
       SEND_CONTENT, SEND_PRIORITY, SEND_COUNT, 
       SEND_STATUS, REMARK, VERSION, 
@@ -38,7 +38,7 @@
       #{sendStatus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{version,jdbcType=DECIMAL}, 
       #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="">
+  <insert id="insertSelective" parameterType="com.bhz.mail.entity.MailSend">
     insert into mail_send2
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sendId != null">
